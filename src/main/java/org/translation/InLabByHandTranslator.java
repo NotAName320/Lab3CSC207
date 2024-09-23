@@ -24,14 +24,11 @@ public class InLabByHandTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        // TODO Checkstyle: The String "can" appears 4 times in the file.
         if (CANADA.equals(country)) {
             return new ArrayList<>(List.of("de", "en", "zh"));
         }
         return new ArrayList<>();
     }
-
-
 
     /**
      * Returns the country abbreviations for all countries whose translations are
@@ -57,13 +54,17 @@ public class InLabByHandTranslator implements Translator {
 
         if (!country.equals(CANADA)) {
             returnValue = null;
-        } else if (language.equals("de")) {
+        }
+        else if ("de".equals(language)) {
             returnValue = "Kanada";
-        } else if (language.equals("en")) {
+        }
+        else if ("en".equals(language)) {
             returnValue = "Canada";
-        } else if (language.equals("zh")) {
+        }
+        else if ("zh".equals(language)) {
             returnValue = "加拿大";
-        } else {
+        }
+        else {
             returnValue = null;
         }
         return returnValue;
