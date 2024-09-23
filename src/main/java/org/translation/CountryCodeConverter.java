@@ -36,8 +36,9 @@ public class CountryCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            for (String line : lines) {
-                String[] parts = line.split("\t");
+            // start at i=1 to skip first line (header)
+            for (int i = 1; i < lines.size(); i++) {
+                String[] parts = lines.get(i).split("\t");
                 String country = parts[0];
                 String code = parts[2];
                 countryToCode.put(country, code);
