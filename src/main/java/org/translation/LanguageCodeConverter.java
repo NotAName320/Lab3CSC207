@@ -51,7 +51,7 @@ public class LanguageCodeConverter {
         while (this.countries.hasNext()) {
             String country = this.countries.next();
             String[] split = country.split("\t");
-            if (split[1].equals(code)) {
+            if (split[1].equalsIgnoreCase(code)) {
                 return split[0];
             }
         }
@@ -67,7 +67,7 @@ public class LanguageCodeConverter {
         while (this.countries.hasNext()) {
             String country = this.countries.next();
             String[] split = country.split("\t");
-            if (split[0].equals(language)) {
+            if (split[0].equalsIgnoreCase(language)) {
                 return split[1];
             }
         }

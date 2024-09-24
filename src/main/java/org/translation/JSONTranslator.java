@@ -62,7 +62,7 @@ public class JSONTranslator implements Translator {
 
     @Override
     public List<String> getCountryLanguages(String country) {
-        return new ArrayList<>(countries.get(country).keySet());
+        return new ArrayList<>(countries.get(country.toLowerCase()).keySet());
     }
 
     @Override
@@ -72,6 +72,6 @@ public class JSONTranslator implements Translator {
 
     @Override
     public String translate(String country, String language) {
-        return countries.get(country).get(language);
+        return countries.get(country.toLowerCase()).get(language);
     }
 }
