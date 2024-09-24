@@ -13,6 +13,19 @@ public class LanguageCodeConverterTest {
     }
 
     @Test
+    public void fromLanguageCodeENES() {
+        LanguageCodeConverter converter = new LanguageCodeConverter();
+        assertEquals("English", converter.fromLanguageCode("en"));
+        assertEquals("Spanish, Castilian", converter.fromLanguageCode("es"));
+    }
+
+    @Test
+    public void fromLanguageEN() {
+        LanguageCodeConverter converter = new LanguageCodeConverter();
+        assertEquals("en", converter.fromLanguage("English"));
+    }
+
+    @Test
     public void fromLanguageCodeAllLoaded() {
         LanguageCodeConverter converter = new LanguageCodeConverter();
         assertEquals(184, converter.getNumLanguages());
