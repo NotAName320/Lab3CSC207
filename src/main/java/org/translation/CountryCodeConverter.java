@@ -29,8 +29,8 @@ public class CountryCodeConverter {
      * @throws RuntimeException if the resource file can't be loaded properly
      */
     public CountryCodeConverter(String filename) {
-        countryToCode = new HashMap<String, String>();
-        codeToCountry = new HashMap<String, String>();
+        countryToCode = new HashMap<>();
+        codeToCountry = new HashMap<>();
 
         try {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
@@ -59,7 +59,7 @@ public class CountryCodeConverter {
      * @return the name of the country corresponding to the code
      */
     public String fromCountryCode(String code) {
-        return codeToCountry.get(code);
+        return codeToCountry.get(code.toUpperCase());
     }
 
     /**
