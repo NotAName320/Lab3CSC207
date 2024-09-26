@@ -6,13 +6,14 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * This class provides the service of converting language codes to their names.
  */
 public class LanguageCodeConverter {
 
-    private final Iterator<String> countries;
+    private final List<String> countries;
 
     /**
      * Default constructor which will load the language codes from "language-codes.txt"
@@ -30,16 +31,13 @@ public class LanguageCodeConverter {
     public LanguageCodeConverter(String filename) {
 
         try {
-            List<String> lines = Files.readAllLines(Paths.get(getClass()
+            this.countries = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
-            lines.remove(0);
-
-            this.countries = lines.iterator();
+            this.countries.remove(0);
         }
         catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
         }
-
     }
 
     /**
@@ -48,8 +46,7 @@ public class LanguageCodeConverter {
      * @return the name of the language corresponding to the code
      */
     public String fromLanguageCode(String code) {
-        while (this.countries.hasNext()) {
-            String country = this.countries.next();
+        for (String country: this.countries) {
             String[] split = country.split("\t");
             if (split[1].equalsIgnoreCase(code)) {
                 return split[0];
@@ -64,8 +61,7 @@ public class LanguageCodeConverter {
      * @return the 2-letter code of the language
      */
     public String fromLanguage(String language) {
-        while (this.countries.hasNext()) {
-            String country = this.countries.next();
+        for (String country: this.countries) {
             String[] split = country.split("\t");
             if (split[0].equalsIgnoreCase(language)) {
                 return split[1];
@@ -79,11 +75,6 @@ public class LanguageCodeConverter {
      * @return how many languages are included in this code converter.
      */
     public int getNumLanguages() {
-        int retVal = 0;
-        while (this.countries.hasNext()) {
-            this.countries.next();
-            retVal++;
-        }
-        return retVal;
+        return this.countries.size();
     }
 }
