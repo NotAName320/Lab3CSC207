@@ -42,13 +42,13 @@ public class Main {
             if (QUITSTRING.equals(country)) {
                 break;
             }
-            country = COUNTRY_CODE_CONVERTER.fromCountry(country);
-            String language = promptForLanguage(translator, country);
+            String countryCode = COUNTRY_CODE_CONVERTER.fromCountry(country);
+            String language = promptForLanguage(translator, countryCode);
             if (QUITSTRING.equals(language)) {
                 break;
             }
-            language = LANGUAGE_CODE_CONVERTER.fromLanguage(language);
-            System.out.println(country + " in " + language + " is " + translator.translate(country, language));
+            String languageCode = LANGUAGE_CODE_CONVERTER.fromLanguage(language);
+            System.out.println(country + " in " + language + " is " + translator.translate(countryCode, languageCode));
             System.out.println("Press enter to continue or quit to exit.");
             Scanner s = new Scanner(System.in);
             String textTyped = s.nextLine();
